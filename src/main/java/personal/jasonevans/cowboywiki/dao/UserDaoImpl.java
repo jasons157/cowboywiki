@@ -12,7 +12,11 @@ public class UserDaoImpl implements UserDao {
     @Autowired
     private EntityManager entityManager;
 
-    //Get users from database
+    /**
+     * Find a user by their username
+     * @param username Username to search for
+     * @return searched User (null if not found)
+     */
     @Override
     public User findByUserName(String username) {
 
@@ -34,6 +38,35 @@ public class UserDaoImpl implements UserDao {
         return theUser;
     }
 
+    /**
+     * Find a user by their ID
+     * @param userId ID to search for
+     * @return searched User (null if not found)
+     */
+    @Override
+    public User findByUserId(int userId) {
+
+        Session currentSession = entityManager.unwrap(Session.class);
+
+        Query<User> query = currentSession.createQuery("from Users U where U.id=:userId", User.class);
+        query.setParameter("userId", userId);
+
+        User theUser = null;
+
+        try{
+            theUser = query.getSingleResult();
+        } catch (Exception e){
+            //If it didn't work, there is no user
+            theUser = null;
+        }
+
+        return theUser;
+    }
+
+    /**
+     * Save a user to the database
+     * @param user
+     */
     @Override
     public void save(User user) {
 
