@@ -25,7 +25,7 @@ public class UserDaoImpl implements UserDao {
         //get current HB session
         Session currentSession = entityManager.unwrap(Session.class);
 
-        Query<User> query = currentSession.createQuery("from Users where username=:searchUserName", User.class);
+        Query<User> query = currentSession.createQuery("from User U where U.userName=:searchUserName", User.class);
         query.setParameter("searchUserName", username);
 
         User theUser = null;

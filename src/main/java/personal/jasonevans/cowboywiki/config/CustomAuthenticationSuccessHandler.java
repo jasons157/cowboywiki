@@ -3,6 +3,7 @@ package personal.jasonevans.cowboywiki.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.stereotype.Component;
 import personal.jasonevans.cowboywiki.entity.User;
 import personal.jasonevans.cowboywiki.service.UserService;
 
@@ -17,6 +18,7 @@ import java.io.IOException;
  * Their account will be fetched and placed into the HTTP Session.
  * They will then be forwarded to the home page.
  */
+@Component
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
     @Autowired

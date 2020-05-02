@@ -21,7 +21,7 @@ public class CowboyDaoImpl implements CowboyDao{
         Session currentSession = entityManager.unwrap(Session.class);
 
         //query db for matching IDs
-        Query<Cowboy> theQuery = currentSession.createQuery("from Cowboys C where C.id=:theId");
+        Query<Cowboy> theQuery = currentSession.createQuery("from Cowboy C where C.id=:theId");
         theQuery.setParameter("theId", theId);
 
         Cowboy cowboy = null;
