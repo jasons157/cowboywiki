@@ -71,7 +71,7 @@ public class UserServiceImpl implements UserService {
         user.setEmail(wikiUser.getEmail());
 
         //give user default role of "visitor" so they can look but not edit
-        user.setRoles(Arrays.asList(roleDao.findRoleByName("ROLE_VISITOR")));
+        user.setRoles(Arrays.asList(roleDao.findRoleByName("ROLE_VISITOR"), roleDao.findRoleByName("ROLE_MEMBER")));
 
         userDao.save(user);
     }

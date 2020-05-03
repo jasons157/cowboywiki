@@ -1,8 +1,14 @@
 package personal.jasonevans.cowboywiki.entity;
 
+import personal.jasonevans.cowboywiki.validation.FieldMatch;
+
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@FieldMatch.List({
+        @FieldMatch(first = "password", second = "matchingPassword", message = "The password fields must match")
+})
 public class WikiUser {
 
     @NotNull(message = "is required")
@@ -25,6 +31,7 @@ public class WikiUser {
     @Size(min = 1, message = "is required")
     private String lastName;
 
+    @Email
     @NotNull(message = "is required")
     @Size(min = 1, message = "is required")
     private String email;
