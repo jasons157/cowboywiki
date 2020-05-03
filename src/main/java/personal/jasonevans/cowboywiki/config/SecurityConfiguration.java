@@ -42,13 +42,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        //TODO create login page controller
-        //TODO Create Login page
-        //TODO Create action authenticateUser in login form
+
         //TODO create access denied page
 
         http.authorizeRequests()
-                .antMatchers("/").hasRole("VISITOR")//Everyone gets visitor by default (UserServiceImpl)
+                .antMatchers("/").permitAll()//Everyone can see home page
                 .and()
                 .formLogin()
                     .loginPage("/showLoginPage")

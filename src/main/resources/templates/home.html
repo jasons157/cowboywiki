@@ -9,23 +9,24 @@
 
     <h2>Home Page</h2>
 
-    <hr>
 
     <div>
-        User: <span sec:authentication="name"></span>
+        <!--User: <span sec:authentication="name"></span>
         <br><br>
         Role(s): <span sec:authentication="principal.authorities"></span>
-        <br><br>
+        <br><br>-->
 
         <!-- Check for login error -->
-        <div th:if="${session.user}" >
+        <!--<div th:if="${session.user}" >
             <p th:text="'First name: ' + ${session.user.firstName} + ', Last name: ' + ${session.user.lastName} + ', Email: ' + ${session.user.email}"></p>
-        </div>
+        </div>-->
     </div>
 
     <hr>
 
     <p>Welcome to the home page</p>
+
+    <a th:href="@{/cowboys/list}">Cowboy List</a>
 
     <hr>
 

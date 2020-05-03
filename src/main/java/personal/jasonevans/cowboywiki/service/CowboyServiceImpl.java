@@ -4,18 +4,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import personal.jasonevans.cowboywiki.dao.CowboyDao;
+import personal.jasonevans.cowboywiki.dao.CowboyRepo;
 import personal.jasonevans.cowboywiki.entity.Cowboy;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CowboyServiceImpl implements CowboyService{
 
     @Autowired
-    private CowboyDao cowboyDao;
+    private CowboyRepo cowboyRepo;
 
     @Override
-    @Transactional
+    public List<Cowboy> findAll() {
+        return cowboyRepo.findAll();
+    }
+
+    @Override
     public Cowboy findCowboyById(int id) {
-        return cowboyDao.findCowboyById(id);
+        Optional<Cowboy> result = cowboyRepo.findById(id);
+
+        Cowboy theCowboy = null;
+
+        if (result.isPresent()){
+            theCowboy = result.get();
+        }
+        else{
+            throw new RuntimeException("Couldn't find ID: " + id);
+        }
+
+        return theCowboy;
     }
 
     /**
@@ -27,7 +46,6 @@ public class CowboyServiceImpl implements CowboyService{
      * @param cowboy Cowboy constructed from web form to save to DB
      */
     @Override
-    @Transactional
     public void save(Cowboy cowboy) {
         Cowboy newCowboy = new Cowboy();
 
@@ -40,6 +58,12 @@ public class CowboyServiceImpl implements CowboyService{
         newCowboy.setImagePath(cowboy.getImagePath());
 
         //save cowboy to DB
-        cowboyDao.save(cowboy);
+        cowboyRepo.save(newCowboy);
+    }
+
+    @Override
+    public void deleteById(int cowboyId) {
+
+        cowboyRepo.deleteById(cowboyId);
     }
 }
