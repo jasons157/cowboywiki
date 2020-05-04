@@ -1,6 +1,10 @@
 package personal.jasonevans.cowboywiki.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.sql.Date;
 
 /**
@@ -15,18 +19,28 @@ public class Cowboy {
     @Column(name = "id")
     private int id;
 
+    @NotNull(message = "is required")
+    @Size(min = 1, message = "is required")
     @Column(name = "first_name")
     private String firstName;
 
+    @NotNull(message = "is required")
+    @Size(min = 1, message = "is required")
     @Column(name = "last_name")
     private String lastName;
 
+    @NotNull(message = "is required")
+    @Size(min = 1, message = "is required")
     @Column(name = "biography")
     private String biography;
 
+    @NotNull(message = "is required")
+    @DateTimeFormat(pattern = "yy-MM-dd")
     @Column(name = "birth_date")
     private java.sql.Date birthdate;
 
+    @NotNull(message = "is required")
+    @DateTimeFormat(pattern = "yy-MM-dd")
     @Column(name = "death_date")
     private java.sql.Date deathdate;
 
