@@ -38,11 +38,18 @@
 
             <tr th:each="tempCowboy : ${cowboys}">
 
-                <td th:text="${tempCowboy.firstName}"/>
-                <td th:text="${tempCowboy.lastName}"/>
-                <td th:text="${tempCowboy.birthdate}"/>
-                <td th:text="${tempCowboy.deathdate}"/>
-
+                <td>
+                    <a th:href="@{/cowboys/showFullCowboy(cowboyId=${tempCowboy.id})}" th:text="${tempCowboy.firstName}"/>
+                </td>
+                <td>
+                    <a th:href="@{/cowboys/showFullCowboy(cowboyId=${tempCowboy.id})}" th:text="${tempCowboy.lastName}"/>
+                </td>
+                <td>
+                    <a th:href="@{/cowboys/showFullCowboy(cowboyId=${tempCowboy.id})}" th:text="${tempCowboy.birthdate}"/>
+                </td>
+                <td>
+                    <a th:href="@{/cowboys/showFullCowboy(cowboyId=${tempCowboy.id})}" th:text="${tempCowboy.deathdate}"/>
+                </td>
 
             </tr>
 

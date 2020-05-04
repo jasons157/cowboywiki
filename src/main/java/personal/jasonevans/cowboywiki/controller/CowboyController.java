@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import personal.jasonevans.cowboywiki.entity.Cowboy;
 import personal.jasonevans.cowboywiki.service.CowboyService;
 
 @Controller
@@ -24,6 +26,16 @@ public class CowboyController {
         model.addAttribute("cowboys", cowboyService.findAll());
 
         return "cowboys/cowboy-list";
+    }
+
+    @GetMapping("showFullCowboy")
+    public String showFullCowboy(@RequestParam("cowboyId") int theId, Model model){
+
+        Cowboy theCowboy = cowboyService.findCowboyById(theId);
+
+        model.addAttribute(theCowboy);
+
+        return "cowboys/cowboy";
     }
 
 
