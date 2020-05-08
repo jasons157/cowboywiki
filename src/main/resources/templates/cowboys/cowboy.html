@@ -35,7 +35,7 @@
         <img th:src="${cowboy.imagePath}" class="card-img-top" th:alt="${cowboy.firstName} + ' ' + ${cowboy.lastName}">
         <div class="card-body">
             <h5 class="card-title"><h1 class="textWhite" th:text="${cowboy.firstName} + ' ' + ${cowboy.lastName}"/></h5>
-            <h6 class="card-subtitle"><em><h6 class="textWhite" th:text="${cowboy.birthdate} + ' — ' + ${cowboy.deathdate} "/></em></h6>
+            <h6 class="card-subtitle"><em><h6 class="textWhite" th:text="${cowboy.getPrettyBirthDate()} + ' — ' + ${cowboy.getPrettyDeathDate()} "/></em></h6>
             <p class="card-text"><p class="textWhite" th:text="${cowboy.biography}" style="font-size:11px"></p>
             <a th:href="@{/cowboys/list}" class="btn btn-light btn-sm">Back</a>
         </div>

@@ -6,6 +6,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 /**
  * POJO class to represent the "cowboys" table.
@@ -35,14 +37,14 @@ public class Cowboy {
     private String biography;
 
     @NotNull(message = "is required")
-    @DateTimeFormat(pattern = "yy-MM-dd")
+    //@DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "birth_date")
-    private java.sql.Date birthdate;
+    private Date birthdate;
 
     @NotNull(message = "is required")
-    @DateTimeFormat(pattern = "yy-MM-dd")
+    //@DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "death_date")
-    private java.sql.Date deathdate;
+    private Date deathdate;
 
     @Column(name = "image_path")
     private String imagePath;
@@ -113,6 +115,22 @@ public class Cowboy {
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
+    }
+
+    public String getPrettyBirthDate(){
+        Date date = birthdate;
+        DateFormat df = new SimpleDateFormat("MMM d, yyyy");
+        String text = df.format(date);
+
+        return text;
+    }
+
+    public String getPrettyDeathDate(){
+        Date date = deathdate;
+        DateFormat df = new SimpleDateFormat("MMM d, yyyy");
+        String text = df.format(date);
+
+        return text;
     }
 
     @Override

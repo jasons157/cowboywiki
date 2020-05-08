@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -18,32 +19,71 @@
 </div>
 
 <div class="container d-flex h-100 border border-secondary rounded-lg shadow" style="width: 25rem; margin: 2% auto">
-<form style="margin: 20px auto; width: 20rem;">
+<form th:action="@{/cowboys/processSaveCowboy}" th:object="${newCowboy}" method="post" style="margin: 20px auto; width: 20rem;">
     <div class="form-group">
+
+        <div th:if="${cowboyError}" class="alert alert-danger col-xs-offset-1 cos-xs-10">
+            <span th:text="${cowboyError}"/>
+        </div>
+
         <label for="firstName">First Name</label>
-        <input type="text" class="form-control rounded-lg" id="firstName" placeholder="first name">
+        <input type="text" th:field="*{firstName}" class="form-control rounded-lg" id="firstName" placeholder="first name">
     </div>
+    <div th:if="${#fields.hasErrors('firstName')}"
+         style="margin-bottom: 25px" class="text-danger">
+        <ul>
+            <li th:each="err : ${#fields.errors('firstName')}" th:text="'First name ' + ${err}" />
+        </ul>
+    </div>
+
     <div class="form-group">
         <label for="lastName">Last Name</label>
-        <input type="text" class="form-control rounded-lg" id="lastName" placeholder="last name">
+        <input type="text" th:field="*{lastName}" class="form-control rounded-lg" id="lastName" placeholder="last name">
+    </div>
+    <div th:if="${#fields.hasErrors('lastName')}"
+         style="margin-bottom: 25px" class="text-danger">
+        <ul>
+            <li th:each="err : ${#fields.errors('lastName')}" th:text="'Last name ' + ${err}" />
+        </ul>
     </div>
 
     <!--TODO have a character used/limit function-->
     <div class="form-group">
         <label for="biography">Biography</label>
-        <textarea class="form-control rounded-lg" id="biography" rows="3" placeholder="A short biography. Limit 1000 characters."></textarea>
+        <textarea class="form-control rounded-lg" th:field="*{biography}" id="biography" rows="3" placeholder="A short biography. Limit 1000 characters."></textarea>
     </div>
+    <div th:if="${#fields.hasErrors('biography')}"
+         style="margin-bottom: 25px" class="text-danger">
+        <ul>
+            <li th:each="err : ${#fields.errors('biography')}" th:text="'Biography ' + ${err}" />
+        </ul>
+    </div>
+
     <div class="form-group">
         <label for="birthDate">Birth Date</label>
-        <input type="date" class="form-control rounded-lg" id="birthDate">
+        <input type="date" th:field="*{birthdate}" class="form-control rounded-lg" id="birthDate">
     </div>
+    <div th:if="${#fields.hasErrors('birthdate')}"
+         style="margin-bottom: 25px" class="text-danger">
+        <ul>
+            <li th:each="err : ${#fields.errors('birthdate')}" th:text="'Birth date ' + ${err}" />
+        </ul>
+    </div>
+
     <div class="form-group">
         <label for="deathDate">Death Date</label>
-        <input type="date" class="form-control rounded-lg" id="deathDate">
+        <input type="date" th:field="*{deathdate}" class="form-control rounded-lg" id="deathDate">
     </div>
+    <div th:if="${#fields.hasErrors('deathdate')}"
+         style="margin-bottom: 25px" class="text-danger">
+        <ul>
+            <li th:each="err : ${#fields.errors('deathdate')}" th:text="'Death date ' + ${err}" />
+        </ul>
+    </div>
+
     <div class="form-group">
         <label for="imagePath">Image Address URL</label>
-        <input type="text" class="form-control rounded-lg" id="imagePath" placeholder="url" aria-describedby="urlHelp">
+        <input type="text" th:field="*{imagePath}" class="form-control rounded-lg" id="imagePath" placeholder="url" aria-describedby="urlHelp">
         <small id="urlHelp" class="form-text text-muted">Paste an image address of this cowboy here!</small>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>

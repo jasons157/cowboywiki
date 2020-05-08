@@ -1,14 +1,21 @@
 package personal.jasonevans.cowboywiki.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import personal.jasonevans.cowboywiki.entity.Cowboy;
 import personal.jasonevans.cowboywiki.service.CowboyService;
+
+import javax.validation.Valid;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("/cowboys")
@@ -19,6 +26,14 @@ public class CowboyController {
     @Autowired
     public CowboyController(CowboyService theCowboyService){
         cowboyService = theCowboyService;
+    }
+
+    @InitBinder
+    public void initBinder(WebDataBinder webDataBinder){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        sdf.setLenient(false);
+        webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
+
     }
 
     @GetMapping("/list")
@@ -47,5 +62,48 @@ public class CowboyController {
         return "cowboys/save-cowboy";
     }
 
+    @PostMapping("/processSaveCowboy")
+    public String processSaveCowboy(
+            @Valid @ModelAttribute("newCowboy") Cowboy cowboy,
+            BindingResult bindingResult,
+            Model model){
+
+        String firstName = cowboy.getFirstName();
+        String lastName = cowboy.getLastName();
+
+        if (bindingResult.hasErrors()){
+            return "cowboys/save-cowboy";
+        }
+
+        if (firstAndLastExist(firstName, lastName)){
+            model.addAttribute("cowboy", new Cowboy());//Taken, set up new cowboy in form
+            model.addAttribute("cowboyError", "Cowboy with that first and last name already exist.");
+
+            return "cowboys/save-cowboy";
+        }
+
+        //everything passed then we're good
+        cowboyService.save(cowboy);
+
+        //TODO make confirmation page with a link that directs to list
+        return "cowboys/cowboy-confirmation";
+    }
+
+    public boolean firstAndLastExist(String firstName, String lastName){
+
+        List<Cowboy> cowboyList = new ArrayList<>();
+
+        cowboyList = cowboyService.findAll();
+
+        //Loop through all cowboys and see if any match names
+        for (Cowboy tempCowboy : cowboyList){
+            if (tempCowboy.getFirstName().toUpperCase().equals(firstName.toUpperCase()) &&
+                tempCowboy.getLastName().toUpperCase().equals(lastName.toUpperCase())){
+                return true;
+            }
+        }
+
+        return false;
+    }
 
 }
