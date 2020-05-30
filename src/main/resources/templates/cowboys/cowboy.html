@@ -37,7 +37,7 @@
             <h5 class="card-title"><h1 class="textWhite" th:text="${cowboy.firstName} + ' ' + ${cowboy.lastName}"/></h5>
             <h6 class="card-subtitle"><em><h6 class="textWhite" th:text="${cowboy.getPrettyBirthDate()} + ' — ' + ${cowboy.getPrettyDeathDate()} "/></em></h6>
             <p class="card-text"><p class="textWhite" th:text="${cowboy.biography}" style="font-size:11px"></p>
-            <a th:href="@{/cowboys/list}" class="btn btn-light btn-sm">Back</a>
+            <a th:href="@{/cowboys/list}" class="btn btn-light btn-sm">Back</a> <a th:href="@{/cowboys/showFormForUpdate(cowboyId=${cowboy.id})}" class="btn btn-secondary btn-sm">Update</a>
         </div>
     </div>
 </div>

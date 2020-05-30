@@ -1,13 +1,13 @@
 package personal.jasonevans.cowboywiki.entity;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Date;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.TimeZone;
 
 /**
  * POJO class to represent the "cowboys" table.
@@ -94,7 +94,7 @@ public class Cowboy {
     }
 
     public Date getBirthdate() {
-        return birthdate;
+        return this.birthdate;
     }
 
     public void setBirthdate(Date birthdate) {
@@ -105,7 +105,7 @@ public class Cowboy {
         return deathdate;
     }
 
-    public void setDeathdate(Date deathdate) {
+    public void setDeathdate(Date deathdate){
         this.deathdate = deathdate;
     }
 
@@ -121,7 +121,6 @@ public class Cowboy {
         Date date = birthdate;
         DateFormat df = new SimpleDateFormat("MMM d, yyyy");
         String text = df.format(date);
-
         return text;
     }
 
@@ -137,12 +136,12 @@ public class Cowboy {
     public String toString() {
         return "Cowboy{" +
                 "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", biography='" + biography + '\'' +
-                ", birthdate=" + birthdate +
-                ", deathdate=" + deathdate +
-                ", imagePath='" + imagePath + '\'' +
+                ", firstName='" + this.firstName + '\'' +
+                ", lastName='" + this.lastName + '\'' +
+                ", biography='" + this.biography + '\'' +
+                ", birthdate=" + this.birthdate +
+                ", deathdate=" + this.deathdate +
+                ", imagePath='" + this.imagePath + '\'' +
                 '}';
     }
 }

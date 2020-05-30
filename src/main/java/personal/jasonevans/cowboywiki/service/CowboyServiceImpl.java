@@ -47,7 +47,15 @@ public class CowboyServiceImpl implements CowboyService{
      */
     @Override
     public void save(Cowboy cowboy) {
-        Cowboy newCowboy = new Cowboy();
+
+        Cowboy newCowboy;
+
+        if (cowboy.getId() != 0){
+            newCowboy = findCowboyById(cowboy.getId());
+        }
+        else {
+            newCowboy = new Cowboy();
+        }
 
         //assign details of cowboy to new cowboy
         newCowboy.setFirstName(cowboy.getFirstName());

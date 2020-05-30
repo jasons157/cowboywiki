@@ -11,7 +11,6 @@ import personal.jasonevans.cowboywiki.entity.Cowboy;
 import personal.jasonevans.cowboywiki.service.CowboyService;
 
 import javax.validation.Valid;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -85,10 +84,23 @@ public class CowboyController {
         //everything passed then we're good
         cowboyService.save(cowboy);
 
-        //TODO make confirmation page with a link that directs to list
         return "cowboys/cowboy-confirmation";
     }
 
+    //TODO when updating and saving, birth and death dates move back a day
+
+    @GetMapping("/showFormForUpdate")
+    public String showFormForUpdate(@RequestParam("cowboyId") int theId, Model theModel){
+
+        Cowboy theCowboy = cowboyService.findCowboyById(theId);
+
+        theModel.addAttribute("newCowboy", theCowboy);
+
+        return "cowboys/save-cowboy";
+    }
+
+    //TODO allow name to be same when updating
+    //Utility method for checking
     public boolean firstAndLastExist(String firstName, String lastName){
 
         List<Cowboy> cowboyList = new ArrayList<>();
