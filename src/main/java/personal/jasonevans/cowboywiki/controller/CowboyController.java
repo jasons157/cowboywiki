@@ -67,16 +67,14 @@ public class CowboyController {
             BindingResult bindingResult,
             Model model){
 
-        String firstName = cowboy.getFirstName();
-        String lastName = cowboy.getLastName();
-
         if (bindingResult.hasErrors()){
             return "cowboys/save-cowboy";
         }
 
-        if (firstAndLastExist(firstName, lastName)){
+        if (exactCowboyExists(cowboy)){
             model.addAttribute("cowboy", new Cowboy());//Taken, set up new cowboy in form
-            model.addAttribute("cowboyError", "Cowboy with that first and last name already exist.");
+            model.addAttribute("cowboyError",
+                    "A cowboy with this information already exists.");
 
             return "cowboys/save-cowboy";
         }
@@ -100,7 +98,22 @@ public class CowboyController {
     }
 
     //TODO allow name to be same when updating
-    //Utility method for checking
+
+    //Utility method for checking if exact cowboys exists
+    //Useful for checking if a user is trying to save an exact duplicate cowboy
+    //Any difference in cowboys means it'll be valid to save
+    public boolean exactCowboyExists(Cowboy theCowboy){
+
+        List<Cowboy> cowboyList = cowboyService.findAll();
+
+        for (Cowboy tempCowboy : cowboyList){
+            if (tempCowboy.equals(theCowboy)) return true;
+        }
+
+        return false;
+    }
+
+    //Utility method for checking first and last name equality
     public boolean firstAndLastExist(String firstName, String lastName){
 
         List<Cowboy> cowboyList = new ArrayList<>();

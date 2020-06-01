@@ -133,6 +133,21 @@ public class Cowboy {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true; //Same exact objects (memory)
+        if (o == null || getClass() != o.getClass()) return false; //Diff class or o is null
+
+        Cowboy otherCowboy = (Cowboy) o;
+
+        return this.firstName.equals(otherCowboy.firstName) &&
+                this.lastName.equals(otherCowboy.lastName) &&
+                this.biography.equals(otherCowboy.biography) &&
+                (this.birthdate.compareTo(otherCowboy.birthdate) == 0) &&
+                (this.deathdate.compareTo(otherCowboy.deathdate) == 0) &&
+                this.imagePath.equals(otherCowboy.imagePath);
+    }
+
+    @Override
     public String toString() {
         return "Cowboy{" +
                 "id=" + id +
