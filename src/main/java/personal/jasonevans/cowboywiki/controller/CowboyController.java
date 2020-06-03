@@ -78,11 +78,19 @@ public class CowboyController {
 
             return "cowboys/save-cowboy";
         }
+        if (firstAndLastExist(cowboy.getFirstName(), cowboy.getLastName())){
+            Cowboy newCowboy = cowboyService.findByFirstNameAndLastName(cowboy.getFirstName(), cowboy.getLastName());
 
-        //everything passed then we're good
-        cowboyService.save(cowboy);
+            newCowboy.setNonNameInfo(cowboy);
 
-        return "cowboys/cowboy-confirmation";
+            cowboyService.save(newCowboy);
+            return "cowboys/cowboy-confirmation";
+        }
+
+            //everything passed then we're good
+            cowboyService.save(cowboy);
+
+            return "cowboys/cowboy-confirmation";
     }
 
     //TODO when updating and saving, birth and death dates move back a day

@@ -10,6 +10,8 @@ public interface CowboyService {
 
     public Cowboy findCowboyById(int id);
 
+    public Cowboy findByFirstNameAndLastName(String firstName, String lastName);
+
     public void save(Cowboy cowboy);
 
     public void deleteById(int cowboyId);

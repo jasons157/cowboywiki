@@ -132,6 +132,14 @@ public class Cowboy {
         return text;
     }
 
+    public void setNonNameInfo(Cowboy otherCowboy){
+        System.out.println(otherCowboy.toString());
+        this.setBirthdate(otherCowboy.getBirthdate());
+        this.setDeathdate(otherCowboy.getDeathdate());
+        this.setImagePath(otherCowboy.getImagePath());
+        this.setBiography(otherCowboy.getBiography());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true; //Same exact objects (memory)

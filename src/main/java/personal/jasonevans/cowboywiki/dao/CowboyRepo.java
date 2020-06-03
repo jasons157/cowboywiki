@@ -4,4 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import personal.jasonevans.cowboywiki.entity.Cowboy;
 
 public interface CowboyRepo extends JpaRepository<Cowboy, Integer> {
+
+    public Cowboy findByFirstNameAndLastName(String firstName, String lastName);
 }

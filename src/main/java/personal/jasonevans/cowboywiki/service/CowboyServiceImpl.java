@@ -37,6 +37,11 @@ public class CowboyServiceImpl implements CowboyService{
         return theCowboy;
     }
 
+    @Override
+    public Cowboy findByFirstNameAndLastName(String firstName, String lastName) {
+        return cowboyRepo.findByFirstNameAndLastName(firstName, lastName);
+    }
+
     /**
      * Assign the details of a cowboy to the database
      * This cowboy will be coming back from a web form,
