@@ -28,12 +28,13 @@ public class CowboyRestController {
     @GetMapping("/test")
     public String test(){return "Hello!!!";}
 
-    @PostMapping("/saveCowboy")
-    public String saveCowboy(@ModelAttribute("cowboy") Cowboy cowboy){
+    @PostMapping("/cowboys")
+    public Cowboy saveCowboy(@RequestBody Cowboy cowboy){
 
+        cowboy.setId(0);
         cowboyService.save(cowboy);
 
-        return "redirect:/cowboys/list";
+        return cowboy;
     }
 
 }
