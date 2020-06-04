@@ -43,7 +43,7 @@ public class CowboyController {
         return "cowboys/cowboy-list";
     }
 
-    @GetMapping("showFullCowboy")
+    @GetMapping("/showFullCowboy")
     public String showFullCowboy(@RequestParam("cowboyId") int theId, Model model){
 
         Cowboy theCowboy = cowboyService.findCowboyById(theId);
@@ -53,7 +53,7 @@ public class CowboyController {
         return "cowboys/cowboy";
     }
 
-    @GetMapping("saveCowboy")
+    @GetMapping("/saveCowboy")
     public String saveCowboy(Model model){
 
         model.addAttribute("newCowboy", new Cowboy());
