@@ -28,4 +28,7 @@ public class CowboyRestController {
         return cowboyService.findCowboyById(id);
     }
 
+    @GetMapping("/test")
+    public String test(){return "Hello!!!";}
+
 }
