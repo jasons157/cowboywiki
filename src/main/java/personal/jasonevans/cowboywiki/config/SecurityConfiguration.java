@@ -48,7 +48,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()//Everyone can see home page
                 .antMatchers("/cowboys/saveCowboy").hasRole("VISITOR")
-                .antMatchers("cowboys/showFormForUpdate").hasRole("VISITOR")
+                .antMatchers("/cowboys/showFormForUpdate").hasRole("VISITOR")
                 .and()
                 .formLogin()
                     .loginPage("/showLoginPage")
