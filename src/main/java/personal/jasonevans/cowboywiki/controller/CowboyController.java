@@ -58,7 +58,7 @@ public class CowboyController {
 
         model.addAttribute("newCowboy", new Cowboy());
 
-        return "home";
+        return "cowboys/cowboy-list";
     }
 
     @PostMapping("/processSaveCowboy")
