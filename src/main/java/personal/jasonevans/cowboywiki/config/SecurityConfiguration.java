@@ -46,8 +46,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         //TODO create access denied page
 
         http.authorizeRequests()
-                .antMatchers("/").permitAll()//Everyone can see home page
-                .antMatchers("/cowboys/saveCowboy").hasRole("VISITOR")
+                .antMatchers("/*/**").permitAll()//Everyone can see home page
+                //.antMatchers("/cowboys/saveCowboy").hasRole("VISITOR")
                 .and()
                 .formLogin()
                     .loginPage("/showLoginPage")
