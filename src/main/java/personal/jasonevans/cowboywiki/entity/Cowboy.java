@@ -33,7 +33,7 @@ public class Cowboy {
 
     @NotNull(message = "is required")
     @Size(min = 1, message = "is required")
-    @Column(name = "biography", length = 1000)
+    @Column(columnDefinition = "LONGTEXT", name = "biography")
     private String biography;
 
     @NotNull(message = "is required")
