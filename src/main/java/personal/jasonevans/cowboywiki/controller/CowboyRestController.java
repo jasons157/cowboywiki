@@ -39,4 +39,12 @@ public class CowboyRestController {
         return new ResponseEntity<String>("Cowboy created.", HttpStatus.CREATED);
     }
 
+    @PutMapping("/cowboys")
+    public ResponseEntity<String> updateCowboy(@RequestBody Cowboy cowboy){
+
+        cowboyService.save(cowboy);
+
+        return new ResponseEntity<String>("Cowboy updated.", HttpStatus.OK);
+    }
+
 }
