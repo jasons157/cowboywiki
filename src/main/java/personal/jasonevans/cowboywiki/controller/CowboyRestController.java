@@ -1,6 +1,8 @@
 package personal.jasonevans.cowboywiki.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import personal.jasonevans.cowboywiki.entity.Cowboy;
 import personal.jasonevans.cowboywiki.service.CowboyService;
@@ -29,12 +31,12 @@ public class CowboyRestController {
     public String test(){return "Hello!!!";}
 
     @PostMapping("/cowboys")
-    public Cowboy saveCowboy(@RequestBody Cowboy cowboy){
+    public ResponseEntity<String> saveCowboy(@RequestBody Cowboy cowboy){
 
         cowboy.setId(0);
         cowboyService.save(cowboy);
 
-        return cowboy;
+        return new ResponseEntity<String>("Cowboy created.", HttpStatus.CREATED);
     }
 
 }

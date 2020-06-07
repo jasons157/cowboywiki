@@ -42,7 +42,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-
         //TODO create access denied page
 
         http.authorizeRequests()
@@ -58,8 +57,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout().permitAll()//Let everyone log out
                 .and()
-                .exceptionHandling().accessDeniedPage("/access-denied");
-
+                .exceptionHandling().accessDeniedPage("/access-denied")
+                .and()
+             .csrf().ignoringAntMatchers("/api/**");
 
     }
 
