@@ -63,7 +63,7 @@ public class CowboyController {
             model.addAttribute("cowboys", cowboyService.findAllDeathdateDesc());
         }
         else {
-            model.addAttribute("cowboys", cowboyService.findAll());
+            model.addAttribute("cowboys", cowboyService.findAllFirstNameAsc());
         }
 
         return "cowboys/cowboy-list";
