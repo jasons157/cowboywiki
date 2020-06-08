@@ -36,9 +36,35 @@ public class CowboyController {
     }
 
     @GetMapping("/list")
-    public String showCowboys(Model model){
+    public String showCowboys(Model model, @RequestParam(required = false, value = "sortType", defaultValue = "") String sort){
 
-        model.addAttribute("cowboys", cowboyService.findAll());
+        if (sort.equals("firstAsc")){
+            model.addAttribute("cowboys", cowboyService.findAllFirstNameAsc());
+        }
+        else if (sort.equals("firstDesc")){
+            model.addAttribute("cowboys", cowboyService.findAllFirstNameDesc());
+        }
+        else if (sort.equals("lastAsc")){
+            model.addAttribute("cowboys", cowboyService.findAllLastNameAsc());
+        }
+        else if (sort.equals("lastDesc")){
+            model.addAttribute("cowboys", cowboyService.findAllLastNameDesc());
+        }
+        else if (sort.equals("birthAsc")){
+            model.addAttribute("cowboys", cowboyService.findAllBirthdateAsc());
+        }
+        else if (sort.equals("birthDesc")){
+            model.addAttribute("cowboys", cowboyService.findAllBirthdateDesc());
+        }
+        else if (sort.equals("deathAsc")){
+            model.addAttribute("cowboys", cowboyService.findAllDeathdateAsc());
+        }
+        else if (sort.equals("deathDesc")){
+            model.addAttribute("cowboys", cowboyService.findAllDeathdateDesc());
+        }
+        else {
+            model.addAttribute("cowboys", cowboyService.findAll());
+        }
 
         return "cowboys/cowboy-list";
     }

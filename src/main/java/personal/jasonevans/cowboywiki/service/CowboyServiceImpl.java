@@ -42,6 +42,46 @@ public class CowboyServiceImpl implements CowboyService{
         return cowboyRepo.findByFirstNameAndLastName(firstName, lastName);
     }
 
+    @Override
+    public List<Cowboy> findAllFirstNameAsc() {
+        return cowboyRepo.findAllByOrderByFirstNameAsc();
+    }
+
+    @Override
+    public List<Cowboy> findAllFirstNameDesc() {
+        return cowboyRepo.findAllByOrderByFirstNameDesc();
+    }
+
+    @Override
+    public List<Cowboy> findAllLastNameAsc() {
+        return cowboyRepo.findAllByOrderByLastNameAsc();
+    }
+
+    @Override
+    public List<Cowboy> findAllLastNameDesc() {
+        return cowboyRepo.findAllByOrderByLastNameDesc();
+    }
+
+    @Override
+    public List<Cowboy> findAllBirthdateAsc() {
+        return cowboyRepo.findAllByOrderByBirthdateAsc();
+    }
+
+    @Override
+    public List<Cowboy> findAllBirthdateDesc() {
+        return cowboyRepo.findAllByOrderByBirthdateDesc();
+    }
+
+    @Override
+    public List<Cowboy> findAllDeathdateAsc() {
+        return cowboyRepo.findAllByOrderByDeathdateAsc();
+    }
+
+    @Override
+    public List<Cowboy> findAllDeathdateDesc() {
+        return cowboyRepo.findAllByOrderByDeathdateDesc();
+    }
+
     /**
      * Assign the details of a cowboy to the database
      * This cowboy will be coming back from a web form,

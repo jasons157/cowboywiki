@@ -8,8 +8,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <script src="https://use.fontawesome.com/75fc06fd84.js"></script>
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
 
     <style>
         .table-custom{
@@ -42,10 +45,49 @@
         <thead class="table-header-custom">
 
         <tr>
-            <th >First Name</th>
-            <th>Last Name</th>
-            <th>Born</th>
-            <th>Died</th>
+            <th >First Name
+                <button class="btn btn-primary-outline btn-sm">
+                    <a  th:href="@{/cowboys/list(sortType=${'firstAsc'})}" style="color: black"/>
+                    <i class="fa fa-sort-alpha-asc" aria-hidden="true"></i>
+                </button>
+                <button class="btn btn-primary-outline btn-sm">
+                    <a  th:href="@{/cowboys/list(sortType=${'firstDesc'})}" style="color: black"/>
+                    <i class="fa fa-sort-alpha-desc" aria-hidden="true"></i>
+                </button>
+            </th>
+
+            <th>Last Name
+                <button class="btn btn-primary-outline btn-sm">
+                    <a  th:href="@{/cowboys/list(sortType=${'lastAsc'})}" style="color: black"/>
+                    <i class="fa fa-sort-alpha-asc" aria-hidden="true"></i>
+                </button>
+                <button class="btn btn-primary-outline btn-sm">
+                    <a  th:href="@{/cowboys/list(sortType=${'lastDesc'})}" style="color: black"/>
+                    <i class="fa fa-sort-alpha-desc" aria-hidden="true"></i>
+                </button>
+            </th>
+
+            <th>Born
+                <button class="btn btn-primary-outline btn-sm">
+                    <a  th:href="@{/cowboys/list(sortType=${'birthAsc'})}" style="color: black"/>
+                    <i class="fa fa-sort-numeric-asc" aria-hidden="true"></i>
+                </button>
+                <button class="btn btn-primary-outline btn-sm">
+                    <a  th:href="@{/cowboys/list(sortType=${'birthDesc'})}" style="color: black"/>
+                    <i class="fa fa-sort-numeric-desc" aria-hidden="true"></i>
+                </button>
+            </th>
+
+            <th>Died
+                <button class="btn btn-primary-outline btn-sm">
+                    <a  th:href="@{/cowboys/list(sortType=${'deathAsc'})}" style="color: black"/>
+                    <i class="fa fa-sort-numeric-asc" aria-hidden="true"></i>
+                </button>
+                <button class="btn btn-primary-outline btn-sm">
+                    <a  th:href="@{/cowboys/list(sortType=${'deathDesc'})}" style="color: black"/>
+                    <i class="fa fa-sort-numeric-desc" aria-hidden="true"></i>
+                </button>
+            </th>
         </tr>
 
         </thead>
